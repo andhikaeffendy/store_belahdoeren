@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -15,6 +15,18 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+}
+
+subprojects {
+
+    afterEvaluate {project ->
+        if (project.plugins.hasPlugin('android') || project.plugins.hasPlugin('android-library')) {
+            android {
+                compileSdkVersion 29
+                buildToolsVersion '29.0.0'
+            }
+        }
     }
 }
 

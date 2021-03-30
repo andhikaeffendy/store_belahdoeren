@@ -32,12 +32,21 @@ dependencies:
   shared_preferences: ^0.5.12+4
   intl: ^0.16.1
   geolocator: ^6.2.0
+  image_picker: ^0.6.7+22
+  datetime_picker_formfield: ^1.0.0
+  barcode_scan: ^2.0.1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   integration_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/login_logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,6 +69,9 @@ flutter:
    - assets/login_logo.png
    - assets/logo_home.png
    - assets/delivery.png
+   - assets/circle_1.png
+   - assets/circle_2.png
+   - assets/circle_3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

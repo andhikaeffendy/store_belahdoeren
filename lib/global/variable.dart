@@ -1,14 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:store_belahdoeren/model/profile.dart';
 import 'package:store_belahdoeren/model/user_session.dart';
 
-String domain = "http://belahdoeren.wiradipa.com/";
+String domain = "https://manage.belahdoeren.id/";
 String api_url = domain+"store_api/v1/";
 User currentUser;
 Profile currentProfile;
+PickedFile currentImage;
 
 nextPage(context, page) async {
   return Navigator.push(

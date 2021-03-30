@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:store_belahdoeren/forgot_password.dart';
 import 'package:store_belahdoeren/global/variable.dart';
 import 'package:store_belahdoeren/main.dart';
-import 'package:store_belahdoeren/register.dart';
 import 'api/login.dart';
 import 'global/session.dart';
 
@@ -14,7 +13,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final emailEditTextController = TextEditingController();
   final passwordEditTextController = TextEditingController();
-  bool _visible = false;
+  static bool _visible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,34 +24,20 @@ class _LoginState extends State<Login> {
         height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
-            Container(
-              color: Colors.white,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-            ),
-            Column(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.45,
-                  width: MediaQuery.of(context).size.width,
-                  color: Colors.white,
-                ),
-                Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.all(Radius.elliptical(200, 150)),
-                      color: Colors.yellow[600]),
-                )
-              ],
-            ),
             Positioned(
               bottom: 0,
-              child: Container(
-                color: Colors.yellow[600],
-                height: MediaQuery.of(context).size.height * 0.40,
-                width: MediaQuery.of(context).size.width,
+              child: RotationTransition(
+                turns: new AlwaysStoppedAnimation(180 / 360),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height*0.50,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(
+                            "assets/circle_1.png",
+                          ),
+                          fit: BoxFit.fitHeight)),
+                ),
               ),
             ),
             SingleChildScrollView(
@@ -86,7 +71,7 @@ class _LoginState extends State<Login> {
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.20,
+                    height: MediaQuery.of(context).size.height*0.25,
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 16, right: 16),
@@ -122,8 +107,6 @@ class _LoginState extends State<Login> {
                           .copyWith(splashColor: Colors.transparent),
                       child: TextField(
                         controller: passwordEditTextController,
-                        enableSuggestions: false,
-                        autocorrect: false,
                         obscureText: _visible,
                         style: TextStyle(fontSize: 14.0, color: Colors.black),
                         decoration: InputDecoration(
@@ -163,14 +146,14 @@ class _LoginState extends State<Login> {
                             side: BorderSide(color: Colors.green[700])),
                         onPressed: () {
                           showCircular(context);
-                          futureApiLogin(emailEditTextController.text, passwordEditTextController.text).then((value) {
+                          futureApiLogin(emailEditTextController.text, passwordEditTextController.text).then((value) async {
                             Navigator.of(context, rootNavigator: true).pop();
                             if(value.isSuccess()){
                               currentUser = value.user;
                               storeSession();
                               startNewPage(context, MyHomePage(title: 'Flutter Demo Home Page'));
                             } else {
-                              alertDialog(context, "Sign In Gagal", value.message);
+                              await alertDialog(context, "Sign In Gagal", value.message);
                             }
                           });
                         },
@@ -195,7 +178,7 @@ class _LoginState extends State<Login> {
                         ),
                         GestureDetector(
                           onTap: (){
-                            //nextPage(context, LupaPassword());
+                            nextPage(context, ForgotPassword());
                           },
                           child: Text("Lupa password?", style: TextStyle(color: Colors.brown[200], fontWeight: FontWeight.bold)),
                         ),

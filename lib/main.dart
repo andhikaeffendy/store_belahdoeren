@@ -1,5 +1,13 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:store_belahdoeren/api/logout.dart';
+import 'package:store_belahdoeren/api/profile.dart';
+import 'package:store_belahdoeren/detail_order.dart';
+import 'package:store_belahdoeren/edit_profile.dart';
+import 'package:store_belahdoeren/list_delivery.dart';
+import 'package:store_belahdoeren/list_past_order.dart';
+import 'package:store_belahdoeren/list_pickup.dart';
 import 'package:store_belahdoeren/login.dart';
 import 'global/session.dart';
 import 'global/variable.dart';
@@ -40,6 +48,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKEY = GlobalKey<ScaffoldState>();
+  String qrCode = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      // FutureBuilder(
+      //     future: futureApiEditProfile(currentUser.token),
+      //     builder: (context, snapshot){
+      //       if(snapshot.connectionState == ConnectionState.waiting){
+      //         return CircularProgressIndicator();
+      //       }
+      //       else if(snapshot.connectionState == ConnectionState.done){
+      //         currentProfile = snapshot.data;
+      //       }
+      //     });
+      if(currentProfile == null){
+        futureApiEditProfile(currentUser.token).then((value) async {
+          if(value.isSuccess()){
+            currentProfile = value.data;
+          }else if(value.message == "Token not valid/authorized"){
+            currentUser == null;
+            destroySession();
+            startNewPage(context, Login());
+          }
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Image.asset("assets/scan_qr.png", fit: BoxFit.fill),
           backgroundColor: Colors.transparent,
           onPressed: (){
+            setState(() async{
+              scanQrCode();
+            });
           },
         ),
       ),
@@ -69,7 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     border: Border.all(color: Colors.brown, width: 1),
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                        image: AssetImage(
+                        image:
+                        currentProfile != null ?
+                        NetworkImage(
+                          currentProfile.photo,
+                        )
+                            :
+                        AssetImage(
                           "assets/login_logo.png",
                         ),
                         fit: BoxFit.fitHeight)),
@@ -100,19 +147,24 @@ class _MyHomePageState extends State<MyHomePage> {
               ),SizedBox(
                 height: 16,
               ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.person_pin,
-                    color: Colors.brown,
-                    size: 35,
-                  ),
-                  SizedBox(width: 16),
-                  Text(
-                    "Edit Profile",
-                    style: TextStyle(color: Colors.brown, fontSize: 16),
-                  )
-                ],
+              GestureDetector(
+                onTap: (){
+                  nextPage(context, EditProfile());
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.person_pin,
+                      color: Colors.brown,
+                      size: 35,
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      "Edit Profile",
+                      style: TextStyle(color: Colors.brown, fontSize: 16),
+                    )
+                  ],
+                ),
               ),SizedBox(
                 height: 16,
               ),
@@ -162,14 +214,40 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height*0.50,
             width: double.infinity,
+            height: 400,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.elliptical(200, 150),
-                bottomLeft: Radius.elliptical(200, 150)
-              ),
-              color: Colors.yellow[600],
+                image: DecorationImage(
+                    image: AssetImage(
+                      "assets/circle_1.png",
+                    ),
+                    fit: BoxFit.fitHeight)),
+          ),
+          Positioned(
+            bottom: 50,
+            child: Container(
+              width: 160,
+              height: 400,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        "assets/circle_2.png",
+                      ),
+                      fit: BoxFit.fill)),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Container(
+              width: 100,
+              height: 120,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        "assets/circle_3.png",
+                      ),
+                      fit: BoxFit.fill)),
             ),
           ),
           Row(
@@ -199,7 +277,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: IconButton(
                     icon: Icon(Icons.collections_bookmark, color: Colors.brown[700], size: 25,),
-                    onPressed: () => _scaffoldKEY.currentState.openDrawer()),
+                    onPressed: (){
+                      nextPage(context, ListPastOrder());
+                    }
+                ),
               ),
             ],
           ),
@@ -236,11 +317,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/store.png", width: MediaQuery.of(context).size.width/2.3, height: 150, fit: BoxFit.fill),
+                    GestureDetector(
+                        onTap: (){
+                          nextPage(context, ListPickup());
+                        },
+                        child: Image.asset("assets/store.png",
+                            width: MediaQuery.of(context).size.width/2.3,
+                            height: 150,
+                            fit: BoxFit.fill)),
                     SizedBox(
                       width: 16,
                     ),
-                    Image.asset("assets/delivery.png", width: MediaQuery.of(context).size.width/2.3, height: 150, fit: BoxFit.fill)
+                    GestureDetector(
+                        onTap: (){
+                          nextPage(context, ListDelivery());
+                        },
+                        child: Image.asset("assets/delivery.png",
+                            width: MediaQuery.of(context).size.width/2.3,
+                            height: 150,
+                            fit: BoxFit.fill))
                   ],
                 )
               ],
@@ -249,5 +344,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+
   }
+
+  Future<void> scanQrCode() async {
+    String barcode = await BarcodeScanner.scan();
+    this.qrCode = barcode;
+    print(barcode);
+    var generate = qrCode.split('/');
+    String split = generate[4].trim();
+    String splitCheck1 = generate[1].trim();
+    String splitCheck2 = generate[2].trim();
+    String splitCheck3 = generate[3].trim();
+    print("code "+barcode);
+    print("split check1 : "+splitCheck1);
+    print("split check2 : "+splitCheck2);
+    print("split check3 : "+splitCheck3);
+    print("split "+split);
+    if(barcode == "/" + splitCheck1 +"/" + splitCheck2+"/" + splitCheck3 + "/" +split){
+      if(split == generate[4].trim()){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DetailOrder(transactionList: int.parse(split))),
+        );
+      }
+    }
+    else{
+      await alertDialog(context, "Qr Scan", "Tidak Terdaftar");
+    }
+  }
+
 }
