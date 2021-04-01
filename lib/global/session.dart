@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-
 import 'package:store_belahdoeren/global/variable.dart';
 import 'package:store_belahdoeren/model/profile.dart';
 import 'package:store_belahdoeren/model/user_session.dart';
@@ -38,7 +37,7 @@ profileSession() async {
 // }
 
 storeRegistrationTokenSession() async {
-  if(userRegistrationToken == null) return;
+  if (userRegistrationToken == null) return;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString(sessionRegistrationToken, userRegistrationToken);
 }
@@ -56,7 +55,7 @@ Future loadSession() async {
   String pointsSession = _get_data(prefs, sessionPoints);
   String profileSession = _get_data(prefs, sessionProfile);
   userRegistrationToken = _get_data(prefs, sessionRegistrationToken);
-  if(userSession != null){
+  if (userSession != null) {
     currentUser = User.fromJson(json.decode(userSession));
   }
 
@@ -70,11 +69,11 @@ Future loadSession() async {
   // if(pointsSession != null){
   //   currentPoints = MemberPoints.fromJson(json.decode(pointsSession));
   // }
-  if(profileSession != null){
+  if (profileSession != null) {
     currentProfile = Profile.fromJson(json.decode(profileSession));
   }
 }
 
-_get_data(SharedPreferences prefs, key){
+_get_data(SharedPreferences prefs, key) {
   return prefs.containsKey(key) ? prefs.getString(key) : null;
 }

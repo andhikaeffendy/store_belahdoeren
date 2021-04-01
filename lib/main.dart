@@ -1,10 +1,10 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:store_belahdoeren/api/logout.dart';
 import 'package:store_belahdoeren/api/profile.dart';
 import 'package:store_belahdoeren/detail_order.dart';
 import 'package:store_belahdoeren/edit_profile.dart';
+import 'package:store_belahdoeren/global/session.dart';
 import 'package:store_belahdoeren/list_delivery.dart';
 import 'package:store_belahdoeren/list_past_order.dart';
 import 'package:store_belahdoeren/list_pickup.dart';
@@ -437,11 +437,8 @@ class _MyHomePageState extends State<MyHomePage> {
     String splitCheck2 = generate[2].trim();
     String splitCheck3 = generate[3].trim();
     print("code "+barcode);
-    print("split check1 : "+splitCheck1);
-    print("split check2 : "+splitCheck2);
-    print("split check3 : "+splitCheck3);
     print("split "+split);
-    if(barcode == "/" + splitCheck1 +"/" + splitCheck2+"/" + splitCheck3 + "/" +split){
+    if(barcode == "/store_api/v1/transaction_detail/" +split){
       if(split == generate[4].trim()){
         Navigator.push(
           context,
