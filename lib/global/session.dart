@@ -10,6 +10,7 @@ final String sessionBranch = "belahDurenBranchSession";
 final String sessionAddress = "belahDurenAddressSession";
 final String sessionPoints = "belahDurenPointsSession";
 final String sessionProfile = "belahDurenProfileSession";
+final String sessionRegistrationToken = "belahDurenRegistrationTokenSession";
 
 storeSession() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -36,6 +37,12 @@ profileSession() async {
 //   prefs.setString(sessionAddress, json.encode(selectedAddress.toJson()));
 // }
 
+storeRegistrationTokenSession() async {
+  if(userRegistrationToken == null) return;
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString(sessionRegistrationToken, userRegistrationToken);
+}
+
 destroySession() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.clear();
@@ -48,6 +55,7 @@ Future loadSession() async {
   String addressSession = _get_data(prefs, sessionAddress);
   String pointsSession = _get_data(prefs, sessionPoints);
   String profileSession = _get_data(prefs, sessionProfile);
+  userRegistrationToken = _get_data(prefs, sessionRegistrationToken);
   if(userSession != null){
     currentUser = User.fromJson(json.decode(userSession));
   }

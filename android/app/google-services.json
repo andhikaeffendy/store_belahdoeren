@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "517083991973",
+    "project_id": "belah-doeren-c2a0a",
+    "storage_bucket": "belah-doeren-c2a0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517083991973:android:fdb9c7aef5f70ebc8c224c",
+        "android_client_info": {
+          "package_name": "com.example.belah_duren"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517083991973-thirp41u3eeadpavo06lkp1jl4orn9tu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbQ2sD8iG4bMZQZDju3BknazSovcSyjs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517083991973-thirp41u3eeadpavo06lkp1jl4orn9tu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "517083991973-ckbaiufk90s0bea4fqscfkvr9lfchlfe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.belahDuren"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517083991973:android:14027370e881d3438c224c",
+        "android_client_info": {
+          "package_name": "com.example.store_belahdoeren"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517083991973-thirp41u3eeadpavo06lkp1jl4orn9tu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbQ2sD8iG4bMZQZDju3BknazSovcSyjs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517083991973-thirp41u3eeadpavo06lkp1jl4orn9tu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "517083991973-ckbaiufk90s0bea4fqscfkvr9lfchlfe.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.belahDuren"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

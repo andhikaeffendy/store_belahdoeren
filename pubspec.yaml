@@ -35,7 +35,8 @@ dependencies:
   image_picker: ^0.6.7+22
   datetime_picker_formfield: ^1.0.0
   barcode_scan: ^2.0.1
-
+  firebase_messaging: ^8.0.0-dev.15
+  flutter_local_notifications: ^4.0.1+2
 
 dev_dependencies:
   flutter_test:
