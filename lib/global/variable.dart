@@ -6,11 +6,17 @@ import 'package:intl/intl.dart';
 import 'package:store_belahdoeren/model/profile.dart';
 import 'package:store_belahdoeren/model/user_session.dart';
 
-String domain = "https://manage.belahdoeren.id/";
-String api_url = domain+"store_api/v1/";
+// PRO
+String domain = "https://manage.belahdoeren.id";
+
+// DEV
+// String domain = "http://belahdoeren.wiradipa.com";
+
+String api_url = domain+"/store_api/v1/";
 User currentUser;
 Profile currentProfile;
 PickedFile currentImage;
+String userRegistrationToken;
 
 nextPage(context, page) async {
   return Navigator.push(
