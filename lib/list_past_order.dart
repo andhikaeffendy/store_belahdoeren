@@ -84,7 +84,7 @@ class _ListPastOrderState extends State<ListPastOrder> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              nextPage(context, DetailOrder(transactionList: index,));
+                              nextPage(context, DetailOrder(transactionList: listPast[index].id,));
                             },
                             child: Container(
                               margin: EdgeInsets.only(bottom: 16),

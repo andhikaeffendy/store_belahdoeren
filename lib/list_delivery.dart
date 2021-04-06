@@ -85,7 +85,7 @@ class _ListDeliveryState extends State<ListDelivery> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              nextPage(context, DetailOrder(transactionList: index,));
+                              nextPage(context, DetailOrder(transactionList: listDelivery[index].id,));
                             },
                             child: Container(
                               margin: EdgeInsets.only(bottom: 16),

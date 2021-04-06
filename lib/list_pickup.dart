@@ -85,7 +85,7 @@ class _ListPickupState extends State<ListPickup> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              nextPage(context, DetailOrder(transactionList: index,));
+                              nextPage(context, DetailOrder(transactionList: listPickup[index].id,));
                             },
                             child: Container(
                               margin: EdgeInsets.only(bottom: 16),
