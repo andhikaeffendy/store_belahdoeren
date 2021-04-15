@@ -460,8 +460,7 @@ class _DetailOrderState extends State<DetailOrder> {
                           Navigator.of(context, rootNavigator: true).pop();
                           if(value.isSuccess()){
                             await alertDialog(context, "Transaksi", "Transaksi Selesai");
-                            Navigator.pop(context);
-                            Navigator.pop(context);
+                            Navigator.of(context, rootNavigator: true).pop();
                           }else{
                             await alertDialog(context, "Transaksi", value.message);
                           }
