@@ -183,7 +183,6 @@ class _ListPastOrderState extends State<ListPastOrder> {
                                                     color: Colors.brown[800]),
                                               ),
                                             ),Container(
-                                              width: 200,
                                               child: Text(
                                                 "Tax : " + listPast[index].tax.toString(),
                                                 style: TextStyle(

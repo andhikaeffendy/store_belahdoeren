@@ -182,7 +182,6 @@ class _ListPickupState extends State<ListPickup> {
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.brown[800]),
                                             ),Container(
-                                              width: 200,
                                               child: Text(
                                                 "Tax : "+listPickup[index].tax,
                                                 style: TextStyle(

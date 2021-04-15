@@ -182,7 +182,6 @@ class _ListDeliveryState extends State<ListDelivery> {
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.brown[800]),
                                             ),Container(
-                                              width: 200,
                                               child: Text(
                                                 "Tax : "+listDelivery[index].tax,
                                                 style: TextStyle(
