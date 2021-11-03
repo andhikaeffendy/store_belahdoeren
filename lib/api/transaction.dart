@@ -19,12 +19,23 @@ Future<ApiListPastTransaction> futureApiListPastTransaction(String token) async{
   return ApiListPastTransaction.fromStringJson(response.toString());
 }
 
+Future<ApiCurrentTransaction> futureApiCurrentTransaction(String token) async{
+  var dio = Dio();
+  String url = api_url + "transactions_list";
+  dio.options.headers[HttpHeaders.authorizationHeader] =
+      'Bearer ' + token;
+  Response response = await dio.get(url);
+  print(response.data);
+
+  return ApiCurrentTransaction.fromStringJson(response.toString());
+}
+
 Future<ApiListPickup> futureApiListPickup(String token) async{
   var dio = Dio();
   String url = api_url + "pickup_transactions_list";
   dio.options.headers[HttpHeaders.authorizationHeader] =
       'Bearer ' + token;
-  Response response = await dio.get(url);
+  Response response = await dio.get(url, queryParameters: {"current_date" : DateTime.now()});
   print(response.data);
 
   return ApiListPickup.fromStringJson(response.toString());
@@ -64,6 +75,36 @@ Future<GlobalResponse> futureApiCloseTransaction(String token, int id) async{
   print(response.data);
 
   return GlobalResponse.fromStringJson(response.toString());
+}
+
+class ApiCurrentTransaction{
+  String status;
+  String message;
+  List<TransactionDetail> data;
+
+  ApiCurrentTransaction({
+    this.status,
+    this.message,
+    this.data,
+  });
+
+  ApiCurrentTransaction.fromJson(Map<String, dynamic> json) :
+        status = json["status"],
+        message = json["message"],
+        data = List<TransactionDetail>.from(json["data"].map((x) => TransactionDetail.fromJson(x)));
+
+  ApiCurrentTransaction.fromStringJson(String stringJson) :
+        this.fromJson(json.decode(stringJson));
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "message": message,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  };
+
+  String toStringJson() => json.encode(this.toJson());
+
+  bool isSuccess() => status == "success";
 }
 
 class ApiListPastTransaction{

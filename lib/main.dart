@@ -10,6 +10,8 @@ import 'package:store_belahdoeren/list_past_order.dart';
 import 'package:store_belahdoeren/list_pickup.dart';
 import 'package:store_belahdoeren/login.dart';
 import 'package:store_belahdoeren/api/fcm.dart';
+import 'package:store_belahdoeren/produk_page.dart';
+import 'package:store_belahdoeren/transaksi_page.dart';
 import 'global/session.dart';
 import 'global/variable.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -56,7 +58,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'BelahDoeren Store',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -66,7 +69,7 @@ class MyApp extends StatelessWidget {
 
   Widget _getStartupScreen() {
     return currentUser != null
-        ? MyHomePage(title: 'Flutter Demo Home Page')
+        ? MyHomePage(title: 'BelahDoeren Store')
         : Login();
   }
 }
@@ -84,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String qrCode = "";
 
   saveToken(token){
-   print(token);
+   // print(token);
     if(currentUser == null ){
       print("not login");
     } else if (userRegistrationToken != token) {
@@ -110,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
       debugPrint('Settings registered: ${value.authorizationStatus}');
     });
 
-    print("Token : "+currentUser.token);
+    // print("Token : "+currentUser.token);
 
     if(userRegistrationToken == null)
       FirebaseMessaging.instance.getToken().then((token) => saveToken(token));
@@ -215,7 +218,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),SizedBox(
                 height: 8,
               ),Text(
-                currentUser.name,
+                "${currentUser.name}",
                 style: TextStyle(
                     color: Colors.brown,
                     fontSize: 14.0,),
@@ -238,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icon(
                       Icons.person_pin,
                       color: Colors.brown,
-                      size: 35,
+                      size: 25,
                     ),
                     SizedBox(width: 16),
                     Text(
@@ -247,7 +250,52 @@ class _MyHomePageState extends State<MyHomePage> {
                     )
                   ],
                 ),
-              ),SizedBox(
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              GestureDetector(
+                onTap: (){
+                  nextPage(context, ProdukPage());
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.store,
+                      color: Colors.brown,
+                      size: 25,
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      "Produk",
+                      style: TextStyle(color: Colors.brown, fontSize: 16),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              GestureDetector(
+                onTap: (){
+                  nextPage(context, TransaksiPage());
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.history,
+                      color: Colors.brown,
+                      size: 25,
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      "Transaksi",
+                      style: TextStyle(color: Colors.brown, fontSize: 16),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
                 height: 16,
               ),
               Container(
@@ -271,7 +319,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Icon(
                       Icons.exit_to_app,
                       color: Colors.brown,
-                      size: 35,
+                      size: 25,
                     ),
                     SizedBox(width: 16),
                     Text(
@@ -386,7 +434,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold),
                 ),Text(
-                  currentUser.name,
+                  "${currentUser.name}",
                   style: TextStyle(
                       color: Colors.brown[600],
                       fontSize: 40.0,

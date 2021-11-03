@@ -73,6 +73,7 @@ flutter:
    - assets/circle_1.png
    - assets/circle_2.png
    - assets/circle_3.png
+   - assets/icon_bronze.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

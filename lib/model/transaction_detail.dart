@@ -3,6 +3,7 @@ import 'ItemsTransaction.dart';
 class TransactionDetail{
   int id;
   String transaction_number;
+  String transaction_date;
   String transaction_type;
   String total_price;
   String tax;
@@ -12,6 +13,7 @@ class TransactionDetail{
   String branch_name;
   String my_address;
   int transaction_status;
+  String userName;
   List<ItemsTransaction> item ;
 
   TransactionDetail(
@@ -25,7 +27,9 @@ class TransactionDetail{
       this.voucher_code,
       this.branch_name,
       this.my_address,
-      this.transaction_status);
+      this.transaction_status,
+      this.transaction_date,
+      this.userName);
 
   TransactionDetail.fromJson(Map<String, dynamic> json):
       id = json["id"],
@@ -38,6 +42,8 @@ class TransactionDetail{
       voucher_code = json["voucher_code"],
       branch_name = json["branch_name"],
       my_address = json["my_address"],
+      userName = json.containsKey("user_name") ? json["user_name"] : null,
+      transaction_date = json.containsKey("transaction_date") ? json["transaction_date"] : null,
       transaction_status = json["transaction_status"];
 
   Map<String, dynamic> toJson() =>
@@ -52,6 +58,8 @@ class TransactionDetail{
         "voucher_code" : voucher_code,
         "branch_name" : branch_name,
         "my_address" : my_address,
-        "transaction_status" : transaction_status
+        "transaction_status" : transaction_status,
+        "transaction_date" : transaction_date,
+        "user_name" : userName,
       };
 }
