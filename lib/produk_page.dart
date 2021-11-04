@@ -131,18 +131,18 @@ class _ProdukPageState extends State<ProdukPage> with TickerProviderStateMixin{
                               activeColor: Colors.green,
                               inactiveThumbColor: Colors.red,
                               inactiveTrackColor: Colors.grey[200],
-                              onChanged: (bool value) {
+                              onChanged: (bool value) async {
                                 setState(() {
                                   if(produk[index].getActiveStatus() == true){
                                     futureApiSetMenuNotReady(currentUser.token, produk[index].id).then((value){
                                       if(value.isSuccess()){
-                                        print(value);
+                                        print(value.message);
                                       }
                                     });
                                   }else{
-                                    futureApiSetMenuReady(currentUser.token, produk[index].id).then((value){
+                                    futureApiSetMenuReady(currentUser.token, produk[index].id).then((value) {
                                       if(value.isSuccess()){
-                                        print(value);
+                                        print(value.message);
                                       }
                                     });
                                   }
