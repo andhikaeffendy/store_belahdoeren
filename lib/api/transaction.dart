@@ -77,6 +77,20 @@ Future<GlobalResponse> futureApiCloseTransaction(String token, int id) async{
   return GlobalResponse.fromStringJson(response.toString());
 }
 
+Future<GlobalResponse> futureApiStorePayment(String token, int id) async{
+  var dio = Dio();
+  String url = api_url + "store_payment/" + id.toString();
+  dio.options.headers[HttpHeaders.authorizationHeader] =
+      'Bearer ' + token;
+  FormData formData = new FormData.fromMap({
+    "id" : id
+  });
+  Response response = await dio.post(url, data: formData);
+  print(response.data);
+
+  return GlobalResponse.fromStringJson(response.toString());
+}
+
 class ApiCurrentTransaction{
   String status;
   String message;

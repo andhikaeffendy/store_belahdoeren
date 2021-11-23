@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
       debugPrint('Settings registered: ${value.authorizationStatus}');
     });
 
-    // print("Token : "+currentUser.token);
+    print("Token : "+currentUser.token);
 
     if(userRegistrationToken == null)
       FirebaseMessaging.instance.getToken().then((token) => saveToken(token));

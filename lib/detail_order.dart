@@ -156,13 +156,16 @@ class _DetailOrderState extends State<DetailOrder> {
                             color: Colors.brown[700]),
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        data.data.my_address,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.brown[700]),
+                    Flexible(
+                      child: Container(
+                        child: Text(
+                          data.data.my_address,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.brown[700]),
+                        ),
                       ),
                     )
                   ],
@@ -475,8 +478,8 @@ class _DetailOrderState extends State<DetailOrder> {
                     ),
                   ),
                 )
-                    : Container()
-                ,Container(
+                    : Container(),
+                Container(
                   child: SizedBox(
                     width: double.infinity,
                     child: RaisedButton(
@@ -490,7 +493,33 @@ class _DetailOrderState extends State<DetailOrder> {
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
                   ),
-                ),SizedBox(
+                ),
+                data.data.paymentMethodId == 9 && data.data.transaction_status == 0 && data.data.transaction_type == "Pickup" ?
+                Container(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      onPressed: () {
+                        showCircular(context);
+                        futureApiStorePayment(currentUser.token, data.data.id).then((value) async {
+                          Navigator.of(context, rootNavigator: true).pop();
+                          if(value.isSuccess()){
+                            await alertDialog(context, "Transaksi", value.message);
+                            Navigator.of(context, rootNavigator: true).pop();
+                          }else{
+                            await alertDialog(context, "Transaksi", value.message);
+                          }
+                        });
+                      },//doSubmit(),
+                      color: Colors.green[900],
+                      child: Text("PAID",
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                    ),
+                  ),
+                ) : Container(),
+                SizedBox(
                   height: 16,
                 )
               ],

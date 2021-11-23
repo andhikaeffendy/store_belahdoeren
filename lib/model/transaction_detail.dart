@@ -14,6 +14,7 @@ class TransactionDetail{
   String my_address;
   int transaction_status;
   String userName;
+  int paymentMethodId;
   List<ItemsTransaction> item ;
 
   TransactionDetail(
@@ -29,7 +30,8 @@ class TransactionDetail{
       this.my_address,
       this.transaction_status,
       this.transaction_date,
-      this.userName);
+      this.userName,
+      this.paymentMethodId);
 
   TransactionDetail.fromJson(Map<String, dynamic> json):
       id = json["id"],
@@ -44,6 +46,7 @@ class TransactionDetail{
       my_address = json["my_address"],
       userName = json.containsKey("user_name") ? json["user_name"] : null,
       transaction_date = json.containsKey("transaction_date") ? json["transaction_date"] : null,
+      paymentMethodId = json.containsKey("payment_method_id") ? json["payment_method_id"] : null,
       transaction_status = json["transaction_status"];
 
   Map<String, dynamic> toJson() =>
@@ -61,5 +64,6 @@ class TransactionDetail{
         "transaction_status" : transaction_status,
         "transaction_date" : transaction_date,
         "user_name" : userName,
+        "payment_method_id" : paymentMethodId,
       };
 }
