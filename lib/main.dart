@@ -90,16 +90,16 @@ class _MyHomePageState extends State<MyHomePage> {
    // print(token);
     if(currentUser == null ){
       print("not login");
-    } else if (userRegistrationToken != token) {
+    } else { //if (userRegistrationToken != token) {
       futureApiSendRegistrationToken(currentUser.token, token).then((value){
         if(value.isSuccess()) {
           userRegistrationToken = token;
           storeRegistrationTokenSession();
         }
       });
-    } else {
-      print("already sent token. not yet refreshed.");
-      //do nothing
+    // } else {
+    //   print("already sent token. not yet refreshed.");
+    //   //do nothing
     }
   }
 
