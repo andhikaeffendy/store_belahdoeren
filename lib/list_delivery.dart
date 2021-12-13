@@ -160,28 +160,36 @@ class _ListDeliveryState extends State<ListDelivery> {
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color: Colors.brown,
-                                          ),
-                                          height: 50,
-                                          width: 50,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
+                                        // Container(
+                                        //   decoration: BoxDecoration(
+                                        //     borderRadius:
+                                        //     BorderRadius.circular(5),
+                                        //     color: Colors.brown,
+                                        //   ),
+                                        //   height: 50,
+                                        //   width: 50,
+                                        // ),
+                                        // SizedBox(
+                                        //   width: 8,
+                                        // ),
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
+                                            Text(
+                                              "Nama : " + listDelivery[index].user_name,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.brown[800]),
+                                            ),
                                             Text(
                                               "Harga : " + listDelivery[index].total_price,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.brown[800]),
-                                            ),Container(
+                                            ),
+                                            Container(
                                               child: Text(
                                                 "Tax : "+listDelivery[index].tax,
                                                 style: TextStyle(

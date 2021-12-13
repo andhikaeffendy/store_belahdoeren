@@ -14,6 +14,8 @@ class TransactionDetail{
   String my_address;
   int transaction_status;
   String userName;
+  String userPhone;
+  String transactionStatusName;
   int paymentMethodId;
   List<ItemsTransaction> item ;
 
@@ -31,6 +33,8 @@ class TransactionDetail{
       this.transaction_status,
       this.transaction_date,
       this.userName,
+      this.userPhone,
+      this.transactionStatusName,
       this.paymentMethodId);
 
   TransactionDetail.fromJson(Map<String, dynamic> json):
@@ -45,8 +49,10 @@ class TransactionDetail{
       branch_name = json["branch_name"],
       my_address = json["my_address"],
       userName = json.containsKey("user_name") ? json["user_name"] : null,
+      userPhone = json.containsKey("user_phone") ? json["user_phone"] : null,
       transaction_date = json.containsKey("transaction_date") ? json["transaction_date"] : null,
       paymentMethodId = json.containsKey("payment_method_id") ? json["payment_method_id"] : null,
+      transactionStatusName = json.containsKey("transaction_status_name") ? json["transaction_status_name"] : null,
       transaction_status = json["transaction_status"];
 
   Map<String, dynamic> toJson() =>
@@ -64,6 +70,12 @@ class TransactionDetail{
         "transaction_status" : transaction_status,
         "transaction_date" : transaction_date,
         "user_name" : userName,
+        "user_phone" : userPhone,
+        "transaction_status_name" : transactionStatusName,
         "payment_method_id" : paymentMethodId,
       };
+
+  bool transactionFinish() {
+    return transactionStatusName.toLowerCase() == "selesai" ? true : false;
+  }
 }

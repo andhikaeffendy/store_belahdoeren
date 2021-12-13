@@ -149,6 +149,66 @@ class _DetailOrderState extends State<DetailOrder> {
                     Container(
                       width: MediaQuery.of(context).size.width / 3,
                       child: Text(
+                        "Nama Pemesan",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown[700]),
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        child: Text(
+                          data.data.userName,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.brown[700]),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text(
+                        "Nomor Telepon",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown[700]),
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        child: Text(
+                          data.data.userPhone,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.brown[700]),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text(
                         "Alamat Pengiriman",
                         style: TextStyle(
                             fontSize: 14,
@@ -169,6 +229,20 @@ class _DetailOrderState extends State<DetailOrder> {
                       ),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Center(
+                  child: Text(
+                    data.data.transactionStatusName,
+                    overflow: TextOverflow.clip,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: data.data.transactionFinish() ? Colors.green[700] : Colors.red[700]),
+                  ),
                 ),
                 SizedBox(
                   height: 16,
@@ -272,6 +346,7 @@ class _DetailOrderState extends State<DetailOrder> {
                                         padding: EdgeInsets.only(bottom: 8),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Container(
                                               width: 60,
@@ -284,6 +359,33 @@ class _DetailOrderState extends State<DetailOrder> {
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
+                                            items[index].note != "" ?
+                                                Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: MediaQuery.of(context).size.width/2.8,
+                                                      child: Text(
+                                                        items[index].menu_name,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            color: Colors.brown[700],
+                                                            fontWeight: FontWeight.bold),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: MediaQuery.of(context).size.width/2.8,
+                                                      child: Text(
+                                                        "Note : ${items[index].note}",
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.red[700],
+                                                            fontWeight: FontWeight.bold),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                            :
                                             Container(
                                               width: MediaQuery.of(context).size.width/2.8,
                                               child: Text(

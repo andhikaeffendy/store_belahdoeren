@@ -23,7 +23,7 @@ class ItemsTransaction {
       menu_id = json["menu_id"],
       menu_name = json["menu_name"],
       quantity = json["quantity"],
-      note = json["note"],
+      note = json.containsKey("note") ? json["note"] : "",
       price = json["price"],
       sub_total = json["sub_total"],
       discount = json["discount"];

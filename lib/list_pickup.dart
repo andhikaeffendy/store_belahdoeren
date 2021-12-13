@@ -77,7 +77,6 @@ class _ListPickupState extends State<ListPickup> {
                         listPickup = apiList.data;
                       }
                     }
-
                     return ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
@@ -160,28 +159,36 @@ class _ListPickupState extends State<ListPickup> {
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color: Colors.brown,
-                                          ),
-                                          height: 50,
-                                          width: 50,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
+                                        // Container(
+                                        //   decoration: BoxDecoration(
+                                        //     borderRadius:
+                                        //     BorderRadius.circular(5),
+                                        //     color: Colors.brown,
+                                        //   ),
+                                        //   height: 50,
+                                        //   width: 50,
+                                        // ),
+                                        // SizedBox(
+                                        //   width: 8,
+                                        // ),
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
+                                            Text(
+                                              "Nama : " + listPickup[index].user_name,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.brown[800]),
+                                            ),
                                             Text(
                                               "Harga : " + listPickup[index].total_price,
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.brown[800]),
-                                            ),Container(
+                                            ),
+                                            Container(
                                               child: Text(
                                                 "Tax : "+listPickup[index].tax,
                                                 style: TextStyle(

@@ -159,21 +159,30 @@ class _ListPastOrderState extends State<ListPastOrder> {
                                     child: Row(
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(5),
-                                            color: Colors.brown,
-                                          ),
-                                          height: 50,
-                                          width: 50,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
+                                        // Container(
+                                        //   decoration: BoxDecoration(
+                                        //     borderRadius:
+                                        //     BorderRadius.circular(5),
+                                        //     color: Colors.brown,
+                                        //   ),
+                                        //   height: 50,
+                                        //   width: 50,
+                                        // ),
+                                        // SizedBox(
+                                        //   width: 8,
+                                        // ),
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
+                                            Container(
+                                              child: Text(
+                                                "Nama : " + listPast[index].user_name,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.brown[800]),
+                                              ),
+                                            ),
                                             Container(
                                               child: Text(
                                                 "Harga : " + listPast[index].total_price.toString(),
@@ -182,7 +191,8 @@ class _ListPastOrderState extends State<ListPastOrder> {
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.brown[800]),
                                               ),
-                                            ),Container(
+                                            ),
+                                            Container(
                                               child: Text(
                                                 "Tax : " + listPast[index].tax.toString(),
                                                 style: TextStyle(

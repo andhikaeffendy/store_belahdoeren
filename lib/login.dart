@@ -172,16 +172,19 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(
                           height: 16,
-                        ),Container(
+                        ),
+                        Container(
                           margin: EdgeInsets.only(left: 16, right: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              GestureDetector(
-                                onTap: (){
-                                  //nextPage(context, Registrasi());
-                                },child: Text("Belum punya akun?",style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold)),
-                              ),
+                              // GestureDetector(
+                              //   onTap: (){
+                              //     //nextPage(context, Registrasi());
+                              //   },
+                              //   child: Text("Belum punya akun?",style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold)),
+                              // ),
+                              Spacer(),
                               GestureDetector(
                                 onTap: (){
                                   nextPage(context, ForgotPassword());
