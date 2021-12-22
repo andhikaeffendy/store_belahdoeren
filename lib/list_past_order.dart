@@ -107,7 +107,7 @@ class _ListPastOrderState extends State<ListPastOrder> {
                                   Container(
                                       padding: EdgeInsets.only(top: 8, bottom: 8),
                                       decoration: BoxDecoration(
-                                          color: Colors.red[100],
+                                          color: listPast[index].transaction_status == 1 ? Colors.green[400] : Colors.red[400],
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
                                               topRight: Radius.circular(10))),
@@ -115,18 +115,18 @@ class _ListPastOrderState extends State<ListPastOrder> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          listPast[index].transaction_type + " - Selesai",
+                                          listPast[index].transaction_type + " - ${listPast[index].transaction_status_name}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.brown[800]),
+                                              color: Colors.white),
                                         ),
                                       ))
                                   :
                                   Container(
                                       padding: EdgeInsets.only(top: 8, bottom: 8),
                                       decoration: BoxDecoration(
-                                          color: Colors.green[400],
+                                          color: listPast[index].transaction_status == 1 ? Colors.green[400] : Colors.red[400],
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
                                               topRight: Radius.circular(10))),
@@ -134,7 +134,7 @@ class _ListPastOrderState extends State<ListPastOrder> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          listPast[index].transaction_type + " - Selesai",
+                                          listPast[index].transaction_type + " - ${listPast[index].transaction_status_name}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,

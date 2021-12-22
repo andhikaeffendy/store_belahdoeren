@@ -107,7 +107,7 @@ class _ListPickupState extends State<ListPickup> {
                                   Container(
                                       padding: EdgeInsets.only(top: 8, bottom: 8),
                                       decoration: BoxDecoration(
-                                          color: Colors.red[100],
+                                          color: listPickup[index].transaction_status == 1 ? Colors.green[400] : Colors.red[400],
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
                                               topRight: Radius.circular(10))),
@@ -115,7 +115,7 @@ class _ListPickupState extends State<ListPickup> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          listPickup[index].transaction_type,
+                                          listPickup[index].transaction_type  + " - ${listPickup[index].transaction_status_name}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -126,7 +126,7 @@ class _ListPickupState extends State<ListPickup> {
                                   Container(
                                       padding: EdgeInsets.only(top: 8, bottom: 8),
                                       decoration: BoxDecoration(
-                                          color: Colors.green[400],
+                                          color: listPickup[index].transaction_status == 1 ? Colors.green[400] : Colors.red[400],
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
                                               topRight: Radius.circular(10))),
@@ -134,7 +134,7 @@ class _ListPickupState extends State<ListPickup> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          listPickup[index].transaction_type,
+                                          listPickup[index].transaction_type + " - ${listPickup[index].transaction_status_name}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,

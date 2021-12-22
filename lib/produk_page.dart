@@ -83,75 +83,90 @@ class _ProdukPageState extends State<ProdukPage> with TickerProviderStateMixin{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(8),
-                          topLeft: Radius.circular(8)),
-                      child: Image.network(
-                        produk[index].image_url,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        colorBlendMode: BlendMode.color,
-                        color: produk[index].stock_status == 1 ? null : Colors.grey[300],
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(8),
+                        topLeft: Radius.circular(8)),
+                    child: Image.network(
+                      produk[index].image_url,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 100,
+                      colorBlendMode: BlendMode.color,
+                      color: produk[index].stock_status == 1 ? null : Colors.grey[300],
                     ),
                   ),
                   SizedBox(
                     height: 8,
                   ),
-                  Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         padding: EdgeInsets.only(left: 8),
                         child: Text(
-                            "${produk[index].price}",
+                            "${produk[index].name}",
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
                                 color: produk[index].stock_status == 1 ? Colors.brown[700] : Colors.grey[500])
                         ),
                       ),
-                      Spacer(),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                              "${produk[index].getActiveStatus() ? "Aktif" : "Non aktif"}",
-                              overflow: TextOverflow.clip,
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  color: produk[index].stock_status == 1 ? Colors.brown[700] : Colors.grey[500])
-                          ),
-                          Transform.scale(
-                            scale: 0.6,
-                            child: Switch(
-                              value: produk[index].getActiveStatus(),
-                              activeTrackColor: Colors.grey[200],
-                              activeColor: Colors.green,
-                              inactiveThumbColor: Colors.red,
-                              inactiveTrackColor: Colors.grey[200],
-                              onChanged: (bool value) async {
-                                setState(() {
-                                  if(produk[index].getActiveStatus() == true){
-                                    futureApiSetMenuNotReady(currentUser.token, produk[index].id).then((value){
-                                      if(value.isSuccess()){
-                                        print(value.message);
-                                      }
-                                    });
-                                  }else{
-                                    futureApiSetMenuReady(currentUser.token, produk[index].id).then((value) {
-                                      if(value.isSuccess()){
-                                        print(value.message);
-                                      }
-                                    });
-                                  }
-                                });
-                              },
+                          Container(
+                            padding: EdgeInsets.only(left: 8),
+                            child: Text(
+                                "${produk[index].price}",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: produk[index].stock_status == 1 ? Colors.brown[700] : Colors.grey[500])
                             ),
                           ),
+                          Spacer(),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "${produk[index].getActiveStatus() ? "Aktif" : "Non aktif"}",
+                                  overflow: TextOverflow.clip,
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      color: produk[index].stock_status == 1 ? Colors.brown[700] : Colors.grey[500])
+                              ),
+                              Transform.scale(
+                                scale: 0.6,
+                                child: Switch(
+                                  value: produk[index].getActiveStatus(),
+                                  activeTrackColor: Colors.grey[200],
+                                  activeColor: Colors.green,
+                                  inactiveThumbColor: Colors.red,
+                                  inactiveTrackColor: Colors.grey[200],
+                                  onChanged: (bool value) async {
+                                    setState(() {
+                                      if(produk[index].getActiveStatus() == true){
+                                        futureApiSetMenuNotReady(currentUser.token, produk[index].id).then((value){
+                                          if(value.isSuccess()){
+                                            print(value.message);
+                                          }
+                                        });
+                                      }else{
+                                        futureApiSetMenuReady(currentUser.token, produk[index].id).then((value) {
+                                          if(value.isSuccess()){
+                                            print(value.message);
+                                          }
+                                        });
+                                      }
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ],

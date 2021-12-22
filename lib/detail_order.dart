@@ -209,6 +209,36 @@ class _DetailOrderState extends State<DetailOrder> {
                     Container(
                       width: MediaQuery.of(context).size.width / 3,
                       child: Text(
+                        "Metode Pembayaran",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown[700]),
+                      ),
+                    ),
+                    Flexible(
+                      child: Container(
+                        child: Text(
+                          data.data.paymentMethodName,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.brown[700]),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: Text(
                         "Alamat Pengiriman",
                         style: TextStyle(
                             fontSize: 14,

@@ -9,6 +9,8 @@ class PastTransaction{
   String discount;
   String voucher_code;
   String user_name;
+  String transaction_status_name;
+  int transaction_status;
 
   PastTransaction(
       this.id,
@@ -19,7 +21,9 @@ class PastTransaction{
       this.grand_total,
       this.discount,
       this.voucher_code,
-      this.user_name);
+      this.user_name,
+      this.transaction_status_name,
+      this.transaction_status);
 
   PastTransaction.fromJson(Map<String, dynamic> json):
       id = json["id"],
@@ -30,6 +34,8 @@ class PastTransaction{
       grand_total = json["grand_total"],
       discount = json["discount"],
       user_name = json["user_name"],
+      transaction_status_name = json["transaction_status_name"],
+      transaction_status = json["transaction_status"],
       voucher_code = json["voucher_code"];
 
   Map<String, dynamic> toJson() =>
@@ -43,6 +49,8 @@ class PastTransaction{
         "discount" : discount,
         "voucher_code" : voucher_code,
         "user_name" : user_name,
+        "transaction_status_name" : transaction_status_name,
+        "transaction_status" : transaction_status,
       };
 
 }

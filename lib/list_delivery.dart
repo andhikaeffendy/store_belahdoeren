@@ -108,7 +108,7 @@ class _ListDeliveryState extends State<ListDelivery> {
                                   Container(
                                       padding: EdgeInsets.only(top: 8, bottom: 8),
                                       decoration: BoxDecoration(
-                                          color: Colors.red[100],
+                                          color: listDelivery[index].transaction_status == 1 ? Colors.green[400] : Colors.red[400],
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
                                               topRight: Radius.circular(10))),
@@ -116,7 +116,7 @@ class _ListDeliveryState extends State<ListDelivery> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          listDelivery[index].transaction_type,
+                                          listDelivery[index].transaction_type + " - ${listDelivery[index].transaction_status_name}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -127,7 +127,7 @@ class _ListDeliveryState extends State<ListDelivery> {
                                   Container(
                                       padding: EdgeInsets.only(top: 8, bottom: 8),
                                       decoration: BoxDecoration(
-                                          color: Colors.green[400],
+                                          color: listDelivery[index].transaction_status == 1 ? Colors.green[400] : Colors.red[400],
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(10),
                                               topRight: Radius.circular(10))),
@@ -135,7 +135,7 @@ class _ListDeliveryState extends State<ListDelivery> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          listDelivery[index].transaction_type,
+                                          listDelivery[index].transaction_type + " - ${listDelivery[index].transaction_status_name}",
                                           style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
