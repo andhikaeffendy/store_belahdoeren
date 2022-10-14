@@ -91,6 +91,21 @@ Future<GlobalResponse> futureApiStorePayment(String token, int id) async{
   return GlobalResponse.fromStringJson(response.toString());
 }
 
+Future<GlobalResponse> futureApiUpdateLatestTransaction(String token, int id, String email) async{
+  var dio = Dio();
+  String url = api_url + "update_bee_cloud_transaction";
+  dio.options.headers[HttpHeaders.authorizationHeader] =
+      'Bearer ' + token;
+  FormData formData = new FormData.fromMap({
+    "user_id" : id.toString(),
+    "email" : email,
+  });
+  Response response = await dio.post(url, data: formData);
+  print(response.data);
+
+  return GlobalResponse.fromStringJson(response.toString());
+}
+
 class ApiCurrentTransaction{
   String status;
   String message;

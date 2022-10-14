@@ -1,7 +1,8 @@
-import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
 import 'package:store_belahdoeren/api/logout.dart';
 import 'package:store_belahdoeren/api/profile.dart';
+import 'package:store_belahdoeren/api/transaction.dart';
 import 'package:store_belahdoeren/detail_order.dart';
 import 'package:store_belahdoeren/edit_profile.dart';
 import 'package:store_belahdoeren/global/session.dart';
@@ -478,10 +479,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> scanQrCode() async {
-    String barcode = await BarcodeScanner.scan();
+    ScanResult scanResult = await BarcodeScanner.scan();
+    String barcode = scanResult.rawContent;
     this.qrCode = barcode;
     print(barcode);
+    if(barcode != null || barcode == "")return;
     var generate = qrCode.split('/');
+    if(generate.length < 5){
+      await alertDialog(context, "Qr Scan", "Tidak Terdaftar");
+      return;
+    }
     String split = generate[4].trim();
     String splitCheck1 = generate[1].trim();
     String splitCheck2 = generate[2].trim();
@@ -495,10 +502,28 @@ class _MyHomePageState extends State<MyHomePage> {
           MaterialPageRoute(builder: (context) => DetailOrder(transactionList: int.parse(split))),
         );
       }
+    // } else if(splitCheck1 == "/user/profile/v1/${currentUser.email}/${currentUser.id}"){
+    } else if(splitCheck1 == "user" && splitCheck2 == "profile"){
+      final email = generate[4].trim();
+      final id = generate[5].trim();
+      _updateLatestTransaction(id:int.tryParse(id),email:email);
     }
     else{
       await alertDialog(context, "Qr Scan", "Tidak Terdaftar");
     }
+  }
+
+  _updateLatestTransaction({int id, String email}){
+    showCircular(context);
+    futureApiUpdateLatestTransaction(currentUser.token, id, email).then((value) async {
+      Navigator.of(context, rootNavigator: true).pop();
+      if(value.isSuccess()){
+        await alertDialog(context, "Transaksi", value.message);
+        Navigator.of(context, rootNavigator: true).pop();
+      }else{
+        await alertDialog(context, "Transaksi", value.message);
+      }
+    });
   }
 
 }

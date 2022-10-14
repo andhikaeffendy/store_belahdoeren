@@ -317,10 +317,14 @@ class _EditProfileState extends State<EditProfile> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: BorderSide(color: Colors.yellow[600])),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(color: Colors.yellow[600])),
+                    backgroundColor: Colors.yellow[600],
+                  ),
+                  // textColor: Colors.black,
                   onPressed: () {
                     if(currentImage == null){
                       alertDialog(context, "Photo", "Photo belum dipilih");
@@ -354,8 +358,6 @@ class _EditProfileState extends State<EditProfile> {
                       });
                     }
                   },
-                  color: Colors.yellow[600],
-                  textColor: Colors.black,
                   child: Text("Simpan",
                       style: TextStyle(
                           fontSize: 16,
@@ -388,13 +390,13 @@ class _EditProfileState extends State<EditProfile> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: (){
                   takePhoto(ImageSource.camera);
                 },
                 icon: Icon(Icons.camera),
                 label: Text("Camera"),),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: (){
                   takePhoto(ImageSource.gallery);
                 },

@@ -30,11 +30,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^3.0.10
   shared_preferences: ^0.5.12+4
-  intl: ^0.16.1
+  intl: ^0.17.0
   geolocator: ^6.2.0
   image_picker: ^0.6.7+22
-  datetime_picker_formfield: ^1.0.0
-  barcode_scan: ^2.0.1
+  datetime_picker_formfield: ^2.0.1
+  barcode_scan2: ^4.2.1
   firebase_messaging: ^8.0.0-dev.15
   flutter_local_notifications: ^4.0.1+2
 

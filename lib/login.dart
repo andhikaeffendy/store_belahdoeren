@@ -146,10 +146,14 @@ class _LoginState extends State<Login> {
                           child: ButtonTheme(
                             padding: EdgeInsets.all(12),
                             minWidth: double.infinity,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  side: BorderSide(color: Colors.green[700])),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    side: BorderSide(color: Colors.green[700])),
+                                backgroundColor: Colors.green[700],
+                              ),
+                              // textColor: Colors.white,
                               onPressed: () {
                                 showCircular(context);
                                 futureApiLogin(emailEditTextController.text, passwordEditTextController.text).then((value) async {
@@ -163,10 +167,8 @@ class _LoginState extends State<Login> {
                                   }
                                 });
                               },
-                              color: Colors.green[700],
-                              textColor: Colors.white,
                               child: Text("Login",
-                                  style: TextStyle(fontSize: 16)),
+                                  style: TextStyle(fontSize: 16, color: Colors.white)),
                             ),
                           ),
                         ),

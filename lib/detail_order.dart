@@ -588,7 +588,7 @@ class _DetailOrderState extends State<DetailOrder> {
                 Container(
                   child: SizedBox(
                     width: double.infinity,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: (){
                         showCircular(context);
                         futureApiCloseTransaction(currentUser.token, transactionList).then((value) async {
@@ -601,10 +601,12 @@ class _DetailOrderState extends State<DetailOrder> {
                           }
                         });
                       },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      color: Colors.green[700],
-                      textColor: Colors.black,
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        backgroundColor: Colors.green[700],
+                      ),
+                      // textColor: Colors.black,
                       child: Text("Selesai",
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
                     ),
@@ -614,13 +616,15 @@ class _DetailOrderState extends State<DetailOrder> {
                 Container(
                   child: SizedBox(
                     width: double.infinity,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        backgroundColor: Colors.grey[300],
+                      ),
                       onPressed: () {
                         Navigator.pop(context);
                       },//doSubmit(),
-                      color: Colors.grey[300],
                       child: Text("Kembali",
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),
@@ -630,9 +634,12 @@ class _DetailOrderState extends State<DetailOrder> {
                 Container(
                   child: SizedBox(
                     width: double.infinity,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        backgroundColor: Colors.green[900],
+                      ),
                       onPressed: () {
                         showCircular(context);
                         futureApiStorePayment(currentUser.token, data.data.id).then((value) async {
@@ -645,7 +652,6 @@ class _DetailOrderState extends State<DetailOrder> {
                           }
                         });
                       },//doSubmit(),
-                      color: Colors.green[900],
                       child: Text("PAID",
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                     ),

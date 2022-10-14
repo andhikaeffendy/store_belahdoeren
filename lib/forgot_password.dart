@@ -101,10 +101,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       child: ButtonTheme(
                         padding: EdgeInsets.all(12),
                         minWidth: double.infinity,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(color: Colors.green[700])),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                side: BorderSide(color: Colors.green[700])),
+                            backgroundColor: Colors.green[700],
+                          ),
+                          // textColor: Colors.white,
                           onPressed: () {
                             showCircular(context);
                             futureApiForgotPassword(emailEditTextController.text).then((value) async {
@@ -117,11 +121,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                               }
                             });
                           },
-                          color: Colors.green[700],
-                          textColor: Colors.white,
                           child: Text("Ganti Password",
                               style: TextStyle(fontSize: 16,
-                                  fontWeight: FontWeight.bold)),
+                                  fontWeight: FontWeight.bold, color: Colors.white)),
                         ),
                       ),
                     )
