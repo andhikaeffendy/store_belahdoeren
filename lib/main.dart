@@ -483,7 +483,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String barcode = scanResult.rawContent;
     this.qrCode = barcode;
     print(barcode);
-    if(barcode != null || barcode == "")return;
+    if(barcode == null || barcode == "")return;
     var generate = qrCode.split('/');
     if(generate.length < 5){
       await alertDialog(context, "Qr Scan", "Tidak Terdaftar");
@@ -506,6 +506,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else if(splitCheck1 == "user" && splitCheck2 == "profile"){
       final email = generate[4].trim();
       final id = generate[5].trim();
+      print("update to server");
       _updateLatestTransaction(id:int.tryParse(id),email:email);
     }
     else{
