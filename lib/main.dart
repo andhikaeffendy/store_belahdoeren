@@ -9,6 +9,7 @@ import 'package:store_belahdoeren/global/session.dart';
 import 'package:store_belahdoeren/list_delivery.dart';
 import 'package:store_belahdoeren/list_past_order.dart';
 import 'package:store_belahdoeren/list_pickup.dart';
+import 'package:store_belahdoeren/list_point_transaction.dart';
 import 'package:store_belahdoeren/login.dart';
 import 'package:store_belahdoeren/api/fcm.dart';
 import 'package:store_belahdoeren/produk_page.dart';
@@ -269,6 +270,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(width: 16),
                     Text(
                       "Produk",
+                      style: TextStyle(color: Colors.brown, fontSize: 16),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              GestureDetector(
+                onTap: (){
+                  nextPage(context, ListPointTransaction());
+                },
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.history,
+                      color: Colors.brown,
+                      size: 25,
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      "Transaksi Poin",
                       style: TextStyle(color: Colors.brown, fontSize: 16),
                     )
                   ],
